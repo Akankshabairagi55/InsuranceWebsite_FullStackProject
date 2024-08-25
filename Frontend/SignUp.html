@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Insurance App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Makes the background fixed during scroll */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between; /* Distribute space between items */
+            align-items: center;
+            background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+            padding: 10px 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo > h2 {
+            font-weight: 800;
+            padding-left: 5px;
+            font-size: larger;
+            color: #e8e8ef;
+        }
+
+        .logo > img {
+            border-radius: 50px;
+            height: 60px;
+            margin-right: 5px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            justify-content: space-evenly; /* Center the links */
+            flex: 1; /* Allows links to take up the remaining space */
+        }
+
+        .nav-links li {
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fad74c;
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button {
+            background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
+            color: rgb(15, 10, 117);
+        }
+
+        .signup-button {
+            background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
+            color: rgb(15, 10, 117);
+        }
+
+        .button:hover {
+            background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+        }
+
+        .signup-button:hover {
+            background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+        }
+
+        .button-container a.home-button {
+            background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
+            color: rgb(15, 10, 117);
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a.home-button:hover {
+            background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .toggle-button {
+            padding: 15px;
+            margin: 0;
+            border-radius: 0;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            outline: none;
+            width: 15%;
+        }
+
+        .toggle-button:first-child {
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+        }
+
+        .toggle-button:last-child {
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        .toggle-button.active {
+            background-image: linear-gradient(to top, #c71d6f 0%, #d09693 100%);
+        }
+
+        .divider {
+            width: 2px;
+            height: 50px;
+            background-color: #ddd;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="" alt="logoimg">
+            <h2>𝙎𝙖𝙛𝙚𝙂𝙪𝙖𝙧𝙙</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="InsuranceProducts.html">Insurance Products</a></li>
+            <li><a href="Claims.html">Claims</a></li>
+        </ul>
+        <div class="button-container">
+            <a href="Login.html" class="button login-button">Login 🔑 </a>
+            <a href="SignUp.html" class="button signup-button">Sign Up 👤 </a>
+            <a href="index.html" class="home-button">Home 🏠︎</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="toggle-container">
+            <button id="register-company" class="toggle-button active">Register Your Company</button>
+            <button id="sign-up-customer" class="toggle-button">Sign Up as Customer</button>
+        </div>
+        <div class="form-container">
+            <h2 id="form-title">Company Registration</h2>
+            <form id="signup-form">
+                <div id="company-fields">
+                    <label for="company_name">Company Name:</label>
+                    <input type="text" id="company_name" name="company_name" required>
+
+                    <label for="company_email">Company Email:</label>
+                    <input type="email" id="company_email" name="company_email" required>
+                </div>
+                <div id="customer-fields" style="display: none;">
+                    <label for="customer_name">Customer Name :</label>
+                    <input type="text" id="customer_name" name="customer_name">
+
+                    <label for="customer_username">Username :</label> <!-- Added Username Field -->
+                    <input type="text" id="customer_username" name="customer_username">
+
+                    <label for="customer_email">Email :</label>
+                    <input type="email" id="customer_email" name="customer_email">
+                </div>
+                <label for="password">Password :</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm_password">Confirm Password :</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+
+                <button type="submit">Submit</button>
+                <div class="error" id="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('register-company').addEventListener('click', function() {
+            document.getElementById('form-title').textContent = 'Company Registration';
+            document.getElementById('company-fields').style.display = 'block';
+            document.getElementById('customer-fields').style.display = 'none';
+            this.classList.add('active');
+            document.getElementById('sign-up-customer').classList.remove('active');
+        });
+
+        document.getElementById('sign-up-customer').addEventListener('click', function() {
+            document.getElementById('form-title').textContent = 'Customer Sign Up';
+            document.getElementById('company-fields').style.display = 'none';
+            document.getElementById('customer-fields').style.display = 'block';
+            this.classList.add('active');
+            document.getElementById('register-company').classList.remove('active');
+        });
+    </script>
+</body>
+</html>
