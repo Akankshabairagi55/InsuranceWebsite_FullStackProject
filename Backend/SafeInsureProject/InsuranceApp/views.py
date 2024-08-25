@@ -13,6 +13,8 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.filters import SearchFilter,OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.settings import api_settings
+from drf_yasg.utils import swagger_auto_schema
 
 # Customer Views
 class CustomerListView(generics.ListAPIView):
@@ -30,10 +32,11 @@ class CustomerListView(generics.ListAPIView):
         ).distinct()
    
 
-class CustomerRegisterView(APIView):
+class CustomerRegisterView(generics.CreateAPIView):
+    serializer_class = CustomerRegisterSerializer
     permission_classes=[AllowAny]
     def post(self, request, *args, **kwargs):
-        serializer = CustomerRegisterSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             customer = serializer.save()
             return Response({'detail': 'Customer registered successfully', 'customer_id': customer.id}, status=status.HTTP_201_CREATED)
@@ -81,8 +84,11 @@ class CompanyDetailView(generics.RetrieveUpdateDestroyAPIView):
 
         return company
 
-class LoginView(APIView):
+class LoginView(generics.CreateAPIView):
     permission_classes=[AllowAny]
+    serializer_class = LoginSerializer
+
+
     def post(self, request, *args, **kwargs):
         username = request.data.get('username')
         password = request.data.get('password')

@@ -1,5 +1,21 @@
 from django.urls import path
 from .views import *
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Insurance API",
+        default_version='v1',
+        description="API documentation",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@yourdomain.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=[AllowAny],  # Ensure this is a list or tuple
+)
 
 urlpatterns = [
     
@@ -59,4 +75,10 @@ urlpatterns = [
     path('payments_list/', PaymentListView.as_view(), name='payment-list'),
     path('payments_create/', PaymentCreateView.as_view(), name='payment-create'),
     path('payments/<int:pk>/', PaymentDetailView.as_view(), name='payment-detail'),
+
+    # Swagger Urls
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-schema'),
+
+    # Redoc Url
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='redoc'),
 ]
